@@ -1,4 +1,4 @@
 # Google-Maps-project
 
-Angular app this AGM API.
+Angular app with AGM API.
 
