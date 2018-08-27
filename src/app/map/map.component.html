@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <form>
+    <div class="row">
+      <div class="col-xs-4 position">
+        <input type="number" class="form-control" placeholder="lat" [(ngModel)]="latInput" name="latInput">
+      </div>
+      <div class="col-xs-4 position">
+        <input type="number" class="form-control" placeholder="lng" [(ngModel)]="lngInput" name="lngInput">
+      </div>
+      <div class="col-xs-4 position">
+        <input type="button" class="btn btn" value="Save" (click)="onAddLocation()">
+      </div>
+    </div>
+  </form>
+
+  <div class="location-list" *ngFor="let location of locations; let i = index">
+    <ul class="list-group">
+      <li class="list-group-item"
+          (click)="changeLocation(i)"
+          style="width: 416px; margin-top: 5px; margin-left: 5px; cursor: pointer;">
+        <div class="row">
+          <div class="col-sm-11">
+            Lat: {{location.lat}}, Lng: {{location.lng}}
+          </div>
+          <div class="col-sm-1">
+            <span 
+              class="fas fa-times"
+              (click)="onDelete(i)"
+              style="cursor: pointer; color: rgb(114, 114, 114);"></span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<agm-map [latitude]="lat" [longitude]="lng"  (mapReady)="mapReady($event)">
+  <agm-marker *ngIf="locationChosen" [latitude]="lat" [longitude]="lng" [markerClickable]="true"></agm-marker>
+</agm-map>
+
